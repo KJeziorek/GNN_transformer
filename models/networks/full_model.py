@@ -19,6 +19,13 @@ class GNNModel(nn.Module):
         backbone = EAGR()
         head = GNNHead()
 
+        #print all layers
+        for name, param in backbone.named_parameters():
+            print(name, param.shape)
+
+        for name, param in head.named_parameters():
+            print(name, param.shape)
+            
         self.backbone = backbone
         self.head = head
         self.conf_thre = conf_thre

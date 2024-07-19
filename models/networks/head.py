@@ -4,7 +4,7 @@ import torch.nn as nn
 from YOLOX.yolox.models.yolo_head import YOLOXHead
 from YOLOX.yolox.models.losses import IOUloss
 
-from models.networks.layers.head_layer import DetectionHead
+from models.networks.head_layer import DetectionHead
 
 class GNNHead(YOLOXHead):
     def __init__(
@@ -18,6 +18,12 @@ class GNNHead(YOLOXHead):
             width=1.0,
     ):
         YOLOXHead.__init__(self, num_classes, width, strides, in_channels, act, depthwise)
+
+        self.cls_convs = nn.ModuleList()
+        self.reg_convs = nn.ModuleList()
+        self.cls_preds = nn.ModuleList()
+        self.reg_preds = nn.ModuleList()
+        self.obj_preds = nn.ModuleList()
 
         self.num_classes = num_classes
         self.decode_in_inference = True

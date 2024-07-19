@@ -25,7 +25,7 @@ def main(args):
     lr_monitor = LearningRateMonitor(logging_interval='step')
     trainer = L.Trainer(max_steps=200000, 
                         log_every_n_steps=1, 
-                        check_val_every_n_epoch=20,
+                        check_val_every_n_epoch=5,
                         gradient_clip_val=0.1, 
                         logger=wandb_logger, 
                         callbacks=[lr_monitor],
